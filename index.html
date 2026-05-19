@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ContentPilot is a premium HTML5 creator operations workspace for creators, agencies, and production teams.">
+  <title>ContentPilot | HTML5 Creator Operations Workspace</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/contentpilot-mark.svg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell" id="appShell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-mark">
+          <img src="assets/icons/contentpilot-mark.svg" alt="ContentPilot">
+        </div>
+        <div>
+          <p class="eyebrow">Premium HTML5 Workspace</p>
+          <h1>ContentPilot</h1>
+          <p class="brand-copy">Creator operations workspace for creators, agencies, studios, and marketing teams.</p>
+        </div>
+      </div>
+
+      <button class="button button-primary button-full" data-action="open-quick-add">Quick Add</button>
+
+      <nav class="sidebar-nav" id="sidebarNav" aria-label="Primary navigation"></nav>
+
+      <section class="sidebar-section">
+        <div class="sidebar-section-header">
+          <h2>Operational Pulse™</h2>
+          <button class="icon-button" data-action="open-palette" aria-label="Open command palette">⌘</button>
+        </div>
+        <div id="sidebarPulse"></div>
+      </section>
+
+      <section class="sidebar-section">
+        <div class="sidebar-section-header">
+          <h2>Workspace Feed</h2>
+          <button class="text-button" data-action="open-notifications">Alerts</button>
+        </div>
+        <div id="miniActivity"></div>
+      </section>
+    </aside>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="routeEyebrow">Creator Operations Workspace</p>
+          <h2 id="routeTitle">Command Dashboard</h2>
+        </div>
+        <div class="topbar-actions">
+          <label class="search-field">
+            <span class="sr-only">Global Search</span>
+            <input id="globalSearch" type="search" placeholder="Search content, campaigns, hooks, sponsors">
+          </label>
+          <label class="select-field">
+            <span class="sr-only">Assignee Filter</span>
+            <select id="assigneeFilter">
+              <option value="all">All assignees</option>
+            </select>
+          </label>
+          <button class="button button-secondary" data-action="open-palette">Command Palette</button>
+          <button class="button button-ghost" data-action="toggle-theme">Theme</button>
+        </div>
+      </header>
+
+      <section class="utility-bar">
+        <div class="utility-left">
+          <button class="chip-button is-active" data-action="set-view" data-value="all">All</button>
+          <button class="chip-button" data-action="set-view" data-value="critical">Critical</button>
+          <button class="chip-button" data-action="set-view" data-value="pipeline">Pipeline</button>
+          <button class="chip-button" data-action="set-view" data-value="calendar">Calendar</button>
+          <button class="chip-button" data-action="set-view" data-value="team">Team</button>
+        </div>
+        <div class="utility-right">
+          <button class="button button-ghost" data-action="undo">Undo</button>
+          <button class="button button-ghost" data-action="open-shortcuts">Shortcuts</button>
+          <button class="button button-secondary" data-action="export-json">Backup</button>
+          <button class="button button-primary" data-action="open-report-export">Export Report</button>
+        </div>
+      </section>
+
+      <div id="appView" class="view-shell" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow" id="modalEyebrow">Workspace</p>
+          <h3 id="modalTitle">Modal</h3>
+        </div>
+        <button class="icon-button" data-action="close-modal" aria-label="Close modal">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="palette-backdrop hidden" id="paletteBackdrop" aria-hidden="true">
+    <div class="palette-panel" role="dialog" aria-modal="true" aria-labelledby="paletteTitle">
+      <div class="palette-head">
+        <h3 id="paletteTitle">Command Palette</h3>
+        <button class="icon-button" data-action="close-palette" aria-label="Close command palette">×</button>
+      </div>
+      <input id="paletteSearch" class="palette-input" type="search" placeholder="Jump to modules, actions, exports, or settings">
+      <div id="paletteResults" class="palette-results"></div>
+    </div>
+  </div>
+
+  <div class="drawer hidden" id="notificationDrawer" aria-hidden="true">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div>
+          <p class="eyebrow">Notification Center</p>
+          <h3>Operational Alerts</h3>
+        </div>
+        <button class="icon-button" data-action="close-notifications" aria-label="Close notifications">×</button>
+      </div>
+      <div id="notificationList" class="drawer-body"></div>
+    </div>
+  </div>
+
+  <div class="walkthrough hidden" id="walkthrough" aria-hidden="true">
+    <div class="walkthrough-panel">
+      <p class="eyebrow">Welcome to ContentPilot</p>
+      <h3 id="walkthroughTitle">Operational clarity from the first launch.</h3>
+      <p id="walkthroughBody"></p>
+      <div class="walkthrough-actions">
+        <button class="button button-ghost" data-action="skip-walkthrough">Skip</button>
+        <button class="button button-primary" data-action="advance-walkthrough">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <input id="importInput" type="file" accept="application/json" hidden>
+  <div id="toastStack" class="toast-stack" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
